@@ -1,6 +1,6 @@
 .form-control {
     border-radius: 1rem;
-    background-color: #E9ECEF;
+    background-color: #F4F7FF;
     border-left: none;
 
 }
@@ -9,6 +9,7 @@
     border-right: 0;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+    background-color: #F4F7FF;
 }
 
 .h2{
@@ -18,5 +19,22 @@
 
 .h2 span{
     font-weight: 700;
+}
+
+.card-body img{
+    width: 6rem;
+    height: 6rem;
+    
+}
+
+.card-body .h1, .h3{
+    color: white;
+}
+
+.card{
+    background-color: #1F77F8;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    color: white;
 }
 
