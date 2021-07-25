@@ -1,60 +1,70 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
 
+
+.container-fluid{
+    width: 100%;
+}
 body{
     font-family: 'Open Sans';
 }
 
-.form-control {
-    border-radius: 1rem;
-    background-color: #F4F7FF;
-    border-left: none;
-
-}
-
-.input-group-text{
-    border-right: 0;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
-    background-color: #F4F7FF;
-}
-
-.h2{
+.navmain h1{
+    font-size: 2rem;
     font-weight: 400;
-    color: #1d3557;
+    color: #355063;
 }
 
-.h2 span{
+.navmain h1 span{
     font-weight: 700;
 }
 
-.card-body img{
-    width: 6rem;
-    height: 6rem;
-    
-}
-
-.card-body .h1, .h3{
-    color: white;
-}
-
-.card{
-    background-color: #1F77F8;
+.navmain .form-control{
     border-radius: 1rem;
-    margin-right: 1rem;
-    color: white;
+    background-color: #F4F6FF;
+    border-left: none;
 }
 
-.container .img-fluid{
-    width: 100%;
-    height: 50rem;
+.navmain .input-group span{
+    border-radius: 1rem;
+    border-right: none;
+    background-color: #F4F6FF;
 }
 
-.cases-data .card{
-    height: auto;
+.cases-details .card{
+    width: 20rem;
+    border-color: #355063 !important;
+    color: #355063 !important;
+    border-width: 2px;
+    font-weight: 600 !important;
 }
 
-.cases-data .card .data{
-    margin: 1rem;
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
+.cases-details .card-header{
+    background-color: white;
+    border-color: #355063 !important;
+}
+
+.cases-details .details{
+    margin-right: 3rem;
+}
+
+.country{
+    font-weight: 700;
+    color: #355063;
+}
+@media(max-width:768px){
+    .cases-details .card{
+        width: 16rem;
+    }
+}
+
+@media(max-width:537px){
+    .cases-details .card{
+        width: 20rem;
+    }
+}
+
+@media(max-width:350px){
+    .cases-details .card{
+        width: 100%;
+    }
 }
