@@ -16,15 +16,17 @@
 <body>
     <div class="container mt-2">
         <div class="navmain row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-3">
                 <h1>Covid<span>Care</span></h1>
             </div>
             <div class="col-12 col-md-6 mt-2 mt-sm-0">
-                <div class="input-group px-0">
-                    <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
-                    <input type="text" class="form-control" placeholder="Search" aria-label="SearchBar"
-                        aria-describedby="addon-wrapping">
-                </div>
+                <form>
+                    <div class="input-group px-0">
+                        <span class="input-group-text" id="addon-wrapping"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search" aria-label="SearchBar"
+                            aria-describedby="addon-wrapping">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -34,33 +36,35 @@
                 India
             </div>
         </div>
-        <div class="cases-details d-flex justify-content-evenly flex-wrap mt-3">
-            <div class="card text-primary border-primary mb-3">
-                <div class="card-header border-primary">Cases</div>
-                <div class="card-body">
-                    <h5 class="card-title">Overall</h5>
-                    <div class="details d-inline-block">
-                        <h6 class="card-text">Confirmed</h6>
-                        <p>50000</p>
-                        <h6 class="card-text">Recovered</h6>
-                        <p>49000</p>
-                    </div>
-                    <div class="details d-inline-block">
-                        <h6 class="card-text">Deaths</h6>
-                        <p>800</p>
-                        <h6 class="card-text">Critical</h6>
-                        <p>200</p>
+        <div class="row">
+            <div class="cases-details">
+                <div class="card text-primary border-primary mb-3">
+                    <div class="card-header border-primary">Cases</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Overall</h5>
+                        <div class="details d-inline-block">
+                            <h6 class="card-text">Confirmed</h6>
+                            <p id="overall-confirmed">50000</p>
+                            <h6 class="card-text">Recovered</h6>
+                            <p id="overall-recovered">49000</p>
+                        </div>
+                        <div class="details d-inline-block">
+                            <h6 class="card-text">Deaths</h6>
+                            <p id="overall-deaths">800</p>
+                            <h6 class="card-text">Critical</h6>
+                            <p id="overall-critical">200</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card text-warning border-warning mb-3">
-                <div class="card-header border-warning">Cases</div>
-                <div class="card-body">
-                    <h5 class="card-title">Today</h5>
-                    <h6 class="card-text">Confirmed</h6>
-                    <p>10</p>
-                    <h6 class="card-text">Deaths</h6>
-                    <p>8</p>
+                <div class="card text-warning border-warning mb-3">
+                    <div class="card-header border-warning">Cases</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Today</h5>
+                        <h6 class="card-text">Confirmed</h6>
+                        <p id="today-confirmed">10</p>
+                        <h6 class="card-text">Deaths</h6>
+                        <p id="today-deaths">8</p>
+                    </div>
                 </div>
             </div>
         </div>

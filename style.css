@@ -50,6 +50,7 @@ body{
 .country{
     font-weight: 700;
     color: #355063;
+    font-size: 2rem;
 }
 @media(max-width:768px){
     .cases-details .card{
