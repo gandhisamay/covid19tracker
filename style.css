@@ -52,6 +52,10 @@ body{
     color: #355063;
     font-size: 2rem;
 }
+
+.last-updated{
+    text-align: center;
+}
 @media(max-width:768px){
     .cases-details .card{
         width: 16rem;
