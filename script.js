@@ -29,7 +29,7 @@ let updateOverallData = (searchCountry, countryWiseCases) => {
             yesterdayConfirmed.innerText = timeline[0].new_confirmed;
             yesterdayDeaths.innerText = timeline[0].new_deaths;
             yesterdayRecovered.innerText = timeline[0].new_recovered;
-            lastUpdated.innerText = `${timeline[0].updated_at.slice(0,10)} ${timeline[0].updated_at.slice(11,19)}`;
+            lastUpdated.innerText = `Last updated ${timeline[0].updated_at.slice(0,10)} ${timeline[0].updated_at.slice(11,19)}`;
             break;
         }
 
