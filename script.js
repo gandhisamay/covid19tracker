@@ -19,6 +19,7 @@ let currentYear = date.getUTCFullYear();
 
 let searchCountry = 'India';
 let countryCode= "IN";
+let basicDataLink = "https://corona-api.com/countries";
 
 let getData = async (searchCountry,link) => {
     try {
@@ -29,6 +30,8 @@ let getData = async (searchCountry,link) => {
         console.log("OOPs looks like some error has occured",err);
     }
 }
+
+getData(searchCountry, basicDataLink);
 
 let updateOverallData = (searchCountry, countryWiseCases) => {
     let code;
@@ -55,8 +58,6 @@ let updateOverallData = (searchCountry, countryWiseCases) => {
     return code;
 }
 
-
-let basicDataLink = "https://corona-api.com/countries";
 
 let monthsOnGraph = (currentMonth, currentYear) =>{
     let dateFormatting = (month)=>{
