@@ -72,18 +72,15 @@ let monthsOnGraph = (currentMonth, currentYear) =>{
         if(currentMonth - i <= 0){
             graphMonths.push(monthNames[currentMonth - i + monthNames.length] + ` ${currentYear-1}`);
             graphDateNYear.push(`${currentYear-1}-${dateFormatting(currentMonth -i + monthNames.length)}`);
-            // console.log(currentMonth - i + monthNames.length);
         }else{
             graphMonths.push(monthNames[currentMonth - i] + ` ${currentYear}`);
             graphDateNYear.push(`${currentYear}-${dateFormatting(currentMonth-i+1)}`);
-            // console.log(currentMonth-i+1);
         }
     }
     return [graphMonths, graphDateNYear];
 }
 
 let [graphMonths, graphDateNYear] = monthsOnGraph(currentMonth, currentYear);
-console.log(graphDateNYear);
 
 let totalCasesPerMonth = (detailedCountryWiseCases)=>{
     let monthlyConfirmedCases = [0,0,0,0,0,0,0,0,0,0,0,0];
