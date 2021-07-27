@@ -69,7 +69,7 @@ let monthsOnGraph = (currentMonth, currentYear) =>{
     let graphMonths = [];
     let graphDateNYear = [];
     for(let i = 11;  i >= 0; i--){
-        if(currentMonth - i <= 0){
+        if(currentMonth - i < 0){
             graphMonths.push(monthNames[currentMonth - i + monthNames.length] + ` ${currentYear-1}`);
             graphDateNYear.push(`${currentYear-1}-${dateFormatting(currentMonth -i + monthNames.length)}`);
         }else{
