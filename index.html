@@ -15,7 +15,7 @@
 
 <body>
     <div class="container mt-2">
-        <div class="navmain row">
+        <div class="navmain row justify-content-evenly">
             <div class="col-12 col-md-3">
                 <h1>Covid<span>Care</span></h1>
             </div>
@@ -36,27 +36,27 @@
                 India
             </div>
         </div>
-        <div class="row flex-row">
-            <div class="cases-details mt-3">
-                <div class="card text-primary border-primary mb-3">
+        <div class="row mt-4">
+            <div class="cases-details">
+                <div class="card text-primary border-primary mb-3" style="height: 90%;">
                     <div class="card-header border-primary">Cases</div>
                     <div class="card-body">
-                        <h5 class="card-title">Overall</h5>
-                        <div class="details d-inline-block">
+                        <h5 class="card-title mb-3">Overall</h5>
+                        <div class="overall-cases details d-inline-block ml-4">
                             <h6 class="card-text">Confirmed</h6>
                             <p id="overall-confirmed">50000</p>
-                            <h6 class="card-text">Recovered</h6>
-                            <p id="overall-recovered">49000</p>
-                        </div>
-                        <div class="details d-inline-block">
-                            <h6 class="card-text">Deaths</h6>
-                            <p id="overall-deaths">800</p>
                             <h6 class="card-text">Critical</h6>
                             <p id="overall-critical">200</p>
                         </div>
+                        <div class="details d-inline-block">
+                            <h6 class="card-text">Recovered</h6>
+                            <p id="overall-recovered">49000</p>
+                            <h6 class="card-text">Deaths</h6>
+                            <p id="overall-deaths">800</p>
+                        </div>
                     </div>
                 </div>
-                <div class="card text-warning border-warning mb-3">
+                <div class="card text-warning border-warning mb-3" style="height: 90%;">
                     <div class="card-header border-warning">Cases</div>
                     <div class="card-body">
                         <h5 class="card-title">Yesterday</h5>
@@ -69,7 +69,11 @@
                     </div>
                 </div>
             </div>
-            <canvas id="confirmed-chart">Trends</canvas>
+            <div class="row justify-content-center pl-xs-4">
+                <div class="canvas-parent">
+                    <canvas id="chart"></canvas>
+                </div>
+            </div>
         </div>
     </div>
     <div class="last-updated">

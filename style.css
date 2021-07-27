@@ -30,6 +30,13 @@ body{
     background-color: #F4F6FF;
 }
 
+.cases-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .cases-details .card{
     width: 20rem;
     border-color: #355063 !important;
@@ -56,9 +63,31 @@ body{
 .last-updated{
     text-align: center;
 }
+
+.canvas-parent{
+    width: 60vw;
+    height: 50vh;
+}
+
+@media(max-width:1024){
+    .canvas-parent{
+        width: 75vw;
+        height: 40vh;
+    }
+    .canvasParent{
+        width: 90vw;
+        height: 40vh;
+    }
+}
+
+
 @media(max-width:768px){
     .cases-details .card{
         width: 16rem;
+    }
+    .canvas-parent{
+        width: 100vw;
+        height: 40vh;
     }
 }
 
@@ -66,10 +95,46 @@ body{
     .cases-details .card{
         width: 20rem;
     }
+    .canvasParent{
+        width: 80vw;
+        height: 40vh;
+    }
+
+}
+@media(max-width:480px){
+    .cases-details .card{
+        width: 13rem;
+    }
+    .cases-details{
+        justify-content: space-between;
+    }
+    .canvasParent{
+        width: 85vw;
+        height: 40vh;
+    }
+}
+
+@media(max-width: 450px){
+    .cases-details{
+        display: flex;
+        flex-direction: column;
+    }
+    .cases-details .card{
+        width: 20rem;
+    }
+    .canvasParent{
+        width: 95vw;
+        height: 40vh;
+    }
 }
 
 @media(max-width:350px){
     .cases-details .card{
         width: 100%;
     }
+    .canvasParent{
+        width: 100vw;
+        height: 40vh;
+    }
+    
 }
