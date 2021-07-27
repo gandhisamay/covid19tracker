@@ -58,10 +58,6 @@ let updateOverallData = (searchCountry, countryWiseCases) => {
 
 let basicDataLink = "https://corona-api.com/countries";
 
-let monthlyConfirmedCases = [];
-let monthyRecoveredCases = [];
-let monthlyDeathCases = [];
-
 let monthsOnGraph = (currentMonth, currentYear) =>{
     let dateFormatting = (month)=>{
         if(month / 10 < 1){
@@ -89,24 +85,144 @@ let monthsOnGraph = (currentMonth, currentYear) =>{
 let [graphMonths, graphDateNYear] = monthsOnGraph(currentMonth, currentYear);
 console.log(graphDateNYear);
 
-let getDataForGraph = async(countryCode)=>{
-
-    let completeDataLink = basicDataLink + "\\" + countryCode;
-    let detailedCountryWiseCases = await axios.get(completeDataLink);
-//     for(day of detailedCountryWiseCases.data.data.timeline){
-//         // console.log(day);
-//         console.log(day.date.slice(0,7));
-//         if(graphDateNYear.includes(day.date.slice(0,7))){
-//             monthyRecoveredCases[parseInt(day.date.slice(5,7))] += day.new_recovered;
-//             monthlyConfirmedCases[parseInt(day.date.slice(5,7))] += day.new_confirmed;
-//             monthlyDeathCases[parseInt(day.date.slice(5,7))] += day.new_deaths;
-//         }
-//     }
+let totalCasesPerMonth = (detailedCountryWiseCases)=>{
+    let monthlyConfirmedCases = [0,0,0,0,0,0,0,0,0,0,0,0];
+    let monthyRecoveredCases = [0,0,0,0,0,0,0,0,0,0,0,0];
+    let monthlyDeathCases = [0,0,0,0,0,0,0,0,0,0,0,0];
+    for(day of detailedCountryWiseCases.data.data.timeline){
+        if(graphDateNYear.includes(day.date.slice(0,7))){
+            monthlyConfirmedCases[graphDateNYear.indexOf(day.date.slice(0,7))] += day.new_confirmed;
+            monthlyDeathCases[graphDateNYear.indexOf(day.date.slice(0,7))] += day.new_deaths; 
+            monthyRecoveredCases[graphDateNYear.indexOf(day.date.slice(0,7))] += day.new_recovered;
+        }
+    }
+    return [monthlyConfirmedCases, monthyRecoveredCases, monthlyDeathCases];
 }
 
-getDataForGraph(countryCode);
+let monthlyConfirmedCases = [];
+let monthyRecoveredCases = [];
+let monthlyDeathCases = [];
 
-getData(searchCountry, basicDataLink);
+let getDataForGraph = async(countryCode)=>{
+    let completeDataLink = basicDataLink + "\\" + countryCode;
+    let detailedCountryWiseCases = await axios.get(completeDataLink);
+    [monthlyConfirmedCases, monthyRecoveredCases, monthlyDeathCases] = totalCasesPerMonth(detailedCountryWiseCases);
+    return [monthlyConfirmedCases, monthyRecoveredCases, monthlyDeathCases];
+}
+
+let response;
+getDataForGraph(countryCode).then((res)=>{
+    const canvas1 = document.querySelector('#chart1');
+    const canvas2 = document.querySelector('#chart2');
+    const chart1 = new Chart(canvas1, {
+        type: 'line',
+        labels:'Cases',
+        data:{
+            labels: graphMonths,
+            datasets : [{
+                label: 'Confirmed',
+                data:res[0],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    '#F71900'
+                ],
+                borderWidth: 3,
+            },
+            {
+                label: 'Recovered',
+                data:res[1],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    '#58BC34'
+                ],
+                borderWidth: 3,
+            },
+            {
+                label: 'Deaths',
+                data: res[2],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'grey'
+                ],
+                borderWidth: 3,
+            },
+        ],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            },
+            elements:{
+                line:{
+                    backgroundColor: 'rgba(255,0,0,.5)',
+                }
+            },
+            maintainAspectRatio : false,
+        }
+    });
+
+    const chart2 = new Chart(canvas2, {
+        type: 'line',
+        labels:'Cases',
+        data:{
+            labels: graphMonths,
+            datasets : [
+            {
+                label: 'Deaths',
+                data: res[2],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'grey'
+                ],
+                borderWidth: 3,
+            },
+        ],
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                }
+            },
+            elements:{
+                line:{
+                    backgroundColor: 'rgba(255,0,0,.5)',
+                }
+            },
+            maintainAspectRatio : false,
+        }
+    });   
+})
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -115,72 +231,4 @@ form.addEventListener('submit', (e) => {
     getDataForGraph(countryCode);
 })
 
-const chart = new Chart(canvas, {
-    type: 'line',
-    labels:'Cases',
-    data:{
-        labels: graphMonths,
-        datasets : [{
-            label: 'Confirmed',
-            data:[8,9,10,1,2,3,4,5,6,7,8,9],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                '#F71900'
-            ],
-            borderWidth: 3,
-        },
-        {
-            label: 'Recovered',
-            data:[1,2,3,4,5,6,7,8,9,10,11,12],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                '#58BC34'
-            ],
-            borderWidth: 3,
-        },
-        {
-            label: 'Deaths',
-            data:[5,5,5,5,5,5,5,5,5,5,5,5],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'grey'
-            ],
-            borderWidth: 3,
-        },
-    ],
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-            }
-        },
-        elements:{
-            line:{
-                backgroundColor: 'rgba(255,0,0,.5)',
-            }
-        },
-        maintainAspectRatio : false,
-    }
-});
+
