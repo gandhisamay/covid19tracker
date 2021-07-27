@@ -12,7 +12,7 @@ const lastUpdated = document.querySelector('.last-updated');
 const canvas = document.querySelector('#chart');
 const canvasParent = document.querySelector('.canvas-parent');
 
-const monthNames = ['Jan', 'Feb','Mar','May', 'June', 'July','Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+const monthNames = ['Jan', 'Feb','Mar','Apr','May', 'June', 'July','Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 let date = new Date();
 let currentMonth = date.getMonth();
 let currentYear = date.getUTCFullYear();
@@ -57,17 +57,10 @@ let updateOverallData = (searchCountry, countryWiseCases) => {
 
 
 let basicDataLink = "https://corona-api.com/countries";
-let completeDataLink = basicDataLink + "\\" + countryCode;
-console.log(completeDataLink); 
 
 let monthlyConfirmedCases = [];
 let monthyRecoveredCases = [];
 let monthlyDeathCases = [];
-
-let getDataForGraph = async(countryCode)=>{
-    let completeDataLink = basicDataLink + "\\" + countryCode;
-    let detailedCountryWiseCases = await axios.get(completeDataLink);
-}
 
 let monthsOnGraph = (currentMonth, currentYear) =>{
     let dateFormatting = (month)=>{
@@ -79,22 +72,37 @@ let monthsOnGraph = (currentMonth, currentYear) =>{
     }
     let graphMonths = [];
     let graphDateNYear = [];
-    for(let i = 11;  i >= 1; i--){
-        if(currentMonth - i < 0){
+    for(let i = 11;  i >= 0; i--){
+        if(currentMonth - i <= 0){
             graphMonths.push(monthNames[currentMonth - i + monthNames.length] + ` ${currentYear-1}`);
-            graphDateNYear.push(`${currentYear-1}-${dateFormatting(currentMonth - i + monthNames.length)}`);
-
+            graphDateNYear.push(`${currentYear-1}-${dateFormatting(currentMonth -i + monthNames.length)}`);
+            // console.log(currentMonth - i + monthNames.length);
         }else{
             graphMonths.push(monthNames[currentMonth - i] + ` ${currentYear}`);
-            graphDateNYear.push(`${currentYear-1}-${dateFormatting(currentYear-1)}`);
+            graphDateNYear.push(`${currentYear}-${dateFormatting(currentMonth-i+1)}`);
+            // console.log(currentMonth-i+1);
         }
     }
     return [graphMonths, graphDateNYear];
 }
 
 let [graphMonths, graphDateNYear] = monthsOnGraph(currentMonth, currentYear);
+console.log(graphDateNYear);
 
+let getDataForGraph = async(countryCode)=>{
 
+    let completeDataLink = basicDataLink + "\\" + countryCode;
+    let detailedCountryWiseCases = await axios.get(completeDataLink);
+//     for(day of detailedCountryWiseCases.data.data.timeline){
+//         // console.log(day);
+//         console.log(day.date.slice(0,7));
+//         if(graphDateNYear.includes(day.date.slice(0,7))){
+//             monthyRecoveredCases[parseInt(day.date.slice(5,7))] += day.new_recovered;
+//             monthlyConfirmedCases[parseInt(day.date.slice(5,7))] += day.new_confirmed;
+//             monthlyDeathCases[parseInt(day.date.slice(5,7))] += day.new_deaths;
+//         }
+//     }
+}
 
 getDataForGraph(countryCode);
 
