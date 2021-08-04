@@ -1,141 +1,148 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
 
-
-.container-fluid{
-    width: 100%;
+.container-fluid {
+  width: 100%;
 }
-body{
-    font-family: 'Open Sans';
-}
-
-.navmain h1{
-    font-size: 2rem;
-    font-weight: 400;
-    color: #355063;
+body {
+  font-family: "Open Sans";
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.navmain h1 span{
-    font-weight: 700;
+.navmain h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #355063;
 }
 
-.navmain .form-control{
-    border-radius: 1rem;
-    background-color: #F4F6FF;
-    border-left: none;
+.navmain h1 span {
+  font-weight: 700;
 }
 
-.navmain .input-group span{
-    border-radius: 1rem;
-    border-right: none;
-    background-color: #F4F6FF;
+.navmain .form-control {
+  border-radius: 1rem;
+  background-color: #f4f6ff;
+  border-left: none;
 }
 
-.cases-details{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
+.navmain .input-group span {
+  border-radius: 1rem;
+  border-right: none;
+  background-color: #f4f6ff;
 }
 
-.cases-details .card{
+.cases-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.cases-details .card {
+  width: 20rem;
+  border-color: #355063 !important;
+  color: #355063 !important;
+  border-width: 2px;
+  font-weight: 600 !important;
+}
+
+.cases-details .card-header {
+  background-color: white;
+  border-color: #355063 !important;
+}
+
+.cases-details .details {
+  margin-right: 3rem;
+}
+
+.country {
+  font-weight: 700;
+  color: #355063;
+  font-size: 2rem;
+}
+
+.last-updated {
+  text-align: center;
+}
+
+.canvas-parent {
+  width: 60vw;
+  height: 50vh;
+  margin-bottom: 3rem;
+}
+
+.isvisible {
+  display: none;
+}
+
+.spinner-border {
+  margin-top: 10rem;
+}
+
+@media (max-width: 1024) {
+  .canvas-parent {
+    width: 75vw;
+    height: 40vh;
+  }
+  .canvasParent {
+    width: 90vw;
+    height: 40vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .cases-details .card {
+    width: 16rem;
+  }
+  .canvas-parent {
+    width: 100vw;
+    height: 40vh;
+  }
+}
+
+@media (max-width: 537px) {
+  .cases-details .card {
     width: 20rem;
-    border-color: #355063 !important;
-    color: #355063 !important;
-    border-width: 2px;
-    font-weight: 600 !important;
+  }
+  .canvasParent {
+    width: 80vw;
+    height: 40vh;
+  }
+}
+@media (max-width: 480px) {
+  .cases-details .card {
+    width: 13rem;
+  }
+  .cases-details {
+    justify-content: space-between;
+  }
+  .canvasParent {
+    width: 85vw;
+    height: 40vh;
+  }
 }
 
-.cases-details .card-header{
-    background-color: white;
-    border-color: #355063 !important;
+@media (max-width: 450px) {
+  .cases-details {
+    display: flex;
+    flex-direction: column;
+  }
+  .cases-details .card {
+    width: 20rem;
+  }
+  .canvasParent {
+    width: 95vw;
+    height: 40vh;
+  }
 }
 
-.cases-details .details{
-    margin-right: 3rem;
-}
-
-.country{
-    font-weight: 700;
-    color: #355063;
-    font-size: 2rem;
-}
-
-.last-updated{
-    text-align: center;
-}
-
-.canvas-parent{
-    width: 60vw;
-    height: 50vh;
-    margin-bottom: 3rem;
-}
-
-@media(max-width:1024){
-    .canvas-parent{
-        width: 75vw;
-        height: 40vh;
-    }
-    .canvasParent{
-        width: 90vw;
-        height: 40vh;
-    }
-}
-
-
-@media(max-width:768px){
-    .cases-details .card{
-        width: 16rem;
-    }
-    .canvas-parent{
-        width: 100vw;
-        height: 40vh;
-    }
-}
-
-@media(max-width:537px){
-    .cases-details .card{
-        width: 20rem;
-    }
-    .canvasParent{
-        width: 80vw;
-        height: 40vh;
-    }
-
-}
-@media(max-width:480px){
-    .cases-details .card{
-        width: 13rem;
-    }
-    .cases-details{
-        justify-content: space-between;
-    }
-    .canvasParent{
-        width: 85vw;
-        height: 40vh;
-    }
-}
-
-@media(max-width: 450px){
-    .cases-details{
-        display: flex;
-        flex-direction: column;
-    }
-    .cases-details .card{
-        width: 20rem;
-    }
-    .canvasParent{
-        width: 95vw;
-        height: 40vh;
-    }
-}
-
-@media(max-width:350px){
-    .cases-details .card{
-        width: 100%;
-    }
-    .canvasParent{
-        width: 100vw;
-        height: 40vh;
-    }
-    
+@media (max-width: 350px) {
+  .cases-details .card {
+    width: 100%;
+  }
+  .canvasParent {
+    width: 100vw;
+    height: 40vh;
+  }
 }

@@ -11,8 +11,12 @@ const countryName = document.querySelector('.country');
 const lastUpdated = document.querySelector('.last-updated');
 const canvas = document.querySelector('#chart');
 const canvasParent = document.querySelector('.canvas-parent');
+const spinner = document.querySelector('.spinner-border');
+const page = document.querySelector('.page');
 let chart1;
 let chart2;
+
+page.classList.add('isvisible');
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 let date = new Date();
@@ -218,8 +222,12 @@ let getDataForGraph = () => {
                         },
                         maintainAspectRatio: false,
                     }
-                });
-            }).catch((err) => {
+                }
+                );
+                page.classList.toggle('isvisible');
+                spinner.classList.toggle('isvisible');
+            }
+            ).catch((err) => {
                 console.log("error", err)
             })
 
@@ -234,5 +242,7 @@ form.addEventListener('submit', (e) => {
     getData(searchCountry, basicDataLink);
     chart1.destroy();
     chart2.destroy();
+    page.classList.toggle('isvisible');
+    spinner.classList.toggle('isvisible');
     getDataForGraph();
 })
