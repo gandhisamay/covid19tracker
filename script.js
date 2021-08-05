@@ -36,6 +36,8 @@ let getData = async (searchCountry, link) => {
     try {
         let countryWiseCases = await axios.get(link, { params: { include: 'timeline' } });
         updateOverallData(searchCountry, countryWiseCases);
+        page.classList.toggle('isvisible');
+        spinner.classList.toggle('isvisible');
 
     } catch (err) {
         console.log("OOPs looks like some error has occured", err);
@@ -224,8 +226,6 @@ let getDataForGraph = () => {
                     }
                 }
                 );
-                page.classList.toggle('isvisible');
-                spinner.classList.toggle('isvisible');
             }
             ).catch((err) => {
                 console.log("error", err)
